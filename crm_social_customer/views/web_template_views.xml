@@ -1,0 +1,152 @@
+<odoo>
+    <template id="helloworld" name="Hello World Template">
+
+        <t t-call="website.layout">
+            <h1>Hello World!</h1>
+        </t>
+
+    </template>
+
+    <template id="index" name="Customer List">
+        <t t-call="website.layout">
+            <div id="wrap" class="container">
+                <br/>
+                <form id="filter_form" action="/" method="get" autocomplete="off">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="id_name" name="name" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon2"/>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit">Search</button>
+                        </div>
+                    </div>
+
+                </form>
+                <h1>Customers</h1>
+                <!-- List of Checkouts -->
+                <table class="table table-stripped">
+                    <tr>
+                        <th>Name</th>
+                        <th>Job</th>
+                        <th>Company</th>
+                        <th>Facebook</th>
+                        <th>LinkedIn</th>
+                        <th>Twitter</th>
+                        <!--th>Revisiones</th>  
+                            <th>Paraje</th-->
+                    </tr>
+                    <t t-foreach="docs" t-as="doc">
+                        <tr>
+                            <td class="col-xs-2">
+                                <a t-attf-href="/customer/{{slug(doc)}}">
+                                    <span t-field="doc.name" />
+                                </a>
+                            </td>
+                            <td class="col-xs-2">
+                                <span t-field="doc.function" />
+                            </td>
+                            <td class="col-xs-2">
+                                <span t-field="doc.parent_id.name" />
+                            </td>
+                            <td class="col-xs-2">
+                                <a t-attf-href="{{doc.facebook_account}}" target="_blank">
+                                    <span t-field="doc.facebook_account" />
+                                </a>
+
+                            </td>
+                            <td class="col-xs-2">
+                                <a t-attf-href="{{doc.linkedin_account}}" target="_blank">
+                                    <span t-field="doc.linkedin_account" />
+                                </a>
+                            </td>
+                            <td class="col-xs-2">
+                                <a t-attf-href="{{doc.twitter_account}}" target="_blank">
+                                    <span t-field="doc.twitter_account" />
+                                </a>
+                            </td>
+                            <!--td class="col-xs-2">
+                                <span t-field="par.cantidad_plantas" />
+                            </td>
+                            <td class="col-xs-2">
+                                <span t-field="par.superficie_tareas" />
+                            </td>
+                            <td class="col-xs-2">
+                                <span t-if="par.en_areaprotegida">SI</span>
+                                <span t-if="par.en_areaprotegida==False">NO</span>
+                            </td-->
+                            <!--td class="col-xs-1">
+                                <span t-field="par.cantidad_actividades_culturales" />
+                            </td>
+                            <td class="col-xs-1">
+                                <span t-field="par.paraje" />
+                            </td-->
+                        </tr>
+                        <!--div class="row">
+                        <input type="checkbox" disabled="True" t-att-checked="'checked' if doc.is_profile_complete else None" />
+                        <a t-attf-href="/customer/{{slug(doc)}}">
+                            <h3 t-field="doc.name" t-att-class="'text-strikeout' if doc.is_profile_complete else ''" />
+                        </a>
+                    </div-->
+                    </t>
+                </table>
+            </div>
+        </t>
+    </template>
+
+    <template id="customer" name="Customer Form">
+        <t t-call="website.layout">
+            <div id="wrap" class="container">
+                <br/>
+                <br/>
+                <h1 t-field="doc.name" />
+
+                <t t-if="doc.function">
+                    <h5> Job: <span t-field="doc.function" />
+                    </h5>
+                </t>
+
+                <t t-if="doc.parent_id">
+                    <h5> Company: <span t-field="doc.parent_id.name" />
+                    </h5>
+                </t>
+                 <t t-if="doc.facebook_account">
+                <div class="row">
+                    <div class="col-3">
+                        <span class="fa fa-facebook mr-1"/>
+                        <a t-attf-href="{{doc.facebook_account}}" target="_blank">
+                            <span t-field="doc.facebook_account" />
+                        </a>
+
+                    </div>
+                </div>
+                </t>
+                 <t t-if="doc.linkedin_account">
+                <div class="row">
+               
+                    <div class="col-3">
+                        <span class="fa fa-linkedin mr-1"/>
+                        <a t-attf-href="{{doc.linkedin_account}}" target="_blank">
+                            <span t-field="doc.linkedin_account" />
+                        </a>
+
+                    </div>
+              
+                </div>
+                  </t>
+                 <t t-if="doc.twitter_account">
+                <div class="row">
+                    <div class="col-3 ">
+                        <span class="fa fa-twitter mr-1"/>
+                        <a t-attf-href="{{doc.twitter_account}}" target="_blank">
+                            <span t-field="doc.twitter_account" />
+                        </a>
+
+                    </div>
+                </div>
+                </t>
+            </div>
+        </t>
+    </template>
+
+
+   
+
+</odoo>

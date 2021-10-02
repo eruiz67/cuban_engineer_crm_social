@@ -1,0 +1,164 @@
+<odoo>
+  <data>
+crm.crm_lead_view_form
+    <record id="view_partner_form_crm_social_inherit" model="ir.ui.view">
+      <field name="name">hr.partner.crm.social</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="arch" type="xml">
+      <sheet position="before">
+      <field name="is_profile_complete" invisible="True"/>
+      <div class="alert alert-success" role="alert" attrs="{'invisible': [('is_profile_complete', '=', False)]}" >
+      <img src="/crm_social_customer/static/img/check.png" height="30px" width="30px" class="mx-2"/>
+           PROFILE COMPLETED         
+      </div>
+      </sheet>
+        <page name="sales_purchases" position="before">
+          <page string="Social" name="social">
+            <div class="row">
+              <div class="col-1 ml-5">
+                <div class="fa fa-facebook"/>
+              </div>
+              <div class="col-3">
+                <field name="facebook_account" widget="url"/>
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-1 ml-5">
+                <div class="fa fa-linkedin"/>
+              </div>
+              <div class="col-3">
+                <field name="linkedin_account" widget="url"/>
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-1 ml-5">
+                <div class="fa fa-twitter"  />
+              </div>
+              <div class="col-3 ">
+                <field name="twitter_account" widget="url"/>
+
+              </div>
+            </div>
+            
+          </page>
+        </page>
+
+      </field>
+    </record>
+
+
+    <record id="view_lead_form_crm_social_inherit" model="ir.ui.view">
+      <field name="name">social.crm.lead</field>
+      <field name="model">crm.lead</field>
+      <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+      <field name="arch" type="xml">
+        <page name="extra" position="before">
+          <page string="Social" name="social">
+            <div class="row">
+              <div class="col-1 ml-5">
+                <div class="fa fa-facebook"/>
+              </div>
+              <div class="col-3">
+                <field name="facebook_account" widget="url"/>
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-1 ml-5">
+                <div class="fa fa-linkedin"/>
+              </div>
+              <div class="col-3">
+                <field name="linkedin_account" widget="url"/>
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-1 ml-5">
+                <div class="fa fa-twitter"  />
+              </div>
+              <div class="col-3 ">
+                <field name="twitter_account" widget="url"/>
+
+              </div>
+            </div>
+            
+          </page>
+        </page>
+
+      </field>
+    </record>
+
+    <record id="view_partner_search_crm_social_inherit" model="ir.ui.view">
+      <field name="name">hr.partner.crm.social.search</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_res_partner_filter"/>
+      <field name="arch" type="xml">
+
+        <field name="user_id" position="after">
+          <separator/>
+          <filter string="Perfil incompleto" name="is_profile_complete" domain="[('is_profile_complete', '=', False)]"/>
+
+        </field>
+      </field>
+    </record>
+    <!-- explicit list view definition -->
+
+
+    <!--
+    <record model="ir.ui.view" id="crm_social_customer.list">
+      <field name="name">crm_social_customer list</field>
+      <field name="model">crm_social_customer.crm_social_customer</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="crm_social_customer.action_window">
+      <field name="name">crm_social_customer window</field>
+      <field name="res_model">crm_social_customer.crm_social_customer</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="crm_social_customer.action_server">
+      <field name="name">crm_social_customer server</field>
+      <field name="model_id" ref="model_crm_social_customer_crm_social_customer"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="crm_social_customer" id="crm_social_customer.menu_root"/>
+-->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="crm_social_customer.menu_1" parent="crm_social_customer.menu_root"/>
+    <menuitem name="Menu 2" id="crm_social_customer.menu_2" parent="crm_social_customer.menu_root"/>
+-->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="crm_social_customer.menu_1_list" parent="crm_social_customer.menu_1" action="crm_social_customer.action_window"/>
+    <menuitem name="Server to list" id="crm_social_customer" parent="crm_social_customer.menu_2" action="crm_social_customer.action_server"/>
+-->
+  </data>
+</odoo>
