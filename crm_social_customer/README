@@ -1,0 +1,8 @@
+## ---customer and crm 
+This module adds a social tab to the customers FORM VIEW, where the user can set the facebook, linkedin and twitter account of a customer.
+When a Customer has the three social network set, a badge "PROFILE COMPLITED" appears in the upper part of the form.
+The social media tab is also present in the form view of a lead in the CRM module, as a reference of the partner's social media, of that lead.
+
+##---- website----
+This module adds a customers list to the home page. You can click on the customer name to see a details view. It is posible to perform a serch based on name and social accounts.
+
